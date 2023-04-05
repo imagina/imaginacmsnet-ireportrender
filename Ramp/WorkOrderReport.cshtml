@@ -1,0 +1,744 @@
+﻿@using System.Globalization
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Idata.Data.Entities.Ramp.WorkOrder>
+@{
+    Layout = null;
+    string NullImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP0AAACeCAIAAAB2N5tfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGpSURBVHhe7dJBDQAwCACx+Ze4LxIwgJBrUgl9fxZqvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKfIe4q8p8h7irynyHuKvKdn9gA/Vr6uhLgH8gAAAABJRU5ErkJggg==";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>workorder</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+    <style>
+
+        body {
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 14px;
+        }
+
+        .customer-section .heading-center {
+            font-size: 14px;
+            font-weight: 400;
+            padding: 16px 0;
+            margin-bottom: 0;
+        }
+
+        .work-order .card {
+            border-radius: 7px !important;
+            padding: 6px;
+            border: 2px solid #8EAADB;
+            background-color: #DAE3F3 !important;
+        }
+
+            .work-order .card .card-header {
+                color: #2F5496;
+                background-color: #DAE3F3 !important;
+                text-transform: uppercase;
+                font-weight: 200;
+                font-size: 16px;
+                line-height: 16px;
+                padding: 0;
+                border: 0;
+            }
+
+        .work-order .table td, .work-order .table th {
+            vertical-align: middle;
+        }
+
+        .work-order .table td {
+            font-size: 13px;
+        }
+
+        .work-order .card-body {
+            padding: 10px 0 0 0;
+        }
+
+        .work-order .table {
+            border: 2px solid #8EAADB;
+            background-color: #ffffff  !important;
+        }
+
+            .work-order .table .table-primary, .table-primary > td, .work-order .table .table-primary > th {
+                background-color: #8EAADB;
+                color: #ffffff;
+                padding: 0 0.3rem;
+                font-weight: 200;
+            }
+
+            .work-order .table thead th {
+                border-bottom: 2px solid #8EAADB;
+                color: #ffffff;
+                background-color: #8EAADB !important;
+                text-align: center;
+                padding: 0 0.3rem;
+                font-weight: 200;
+            }
+
+        .work-order logo img {
+            height: 100px;
+            object-fit: contain;
+            width: auto;
+        }
+
+        .work-order .w-40 {
+            width: 40%;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        th {
+            font-weight: 500;
+        }
+
+        .work-order .w-40 img {
+            height: 80px;
+            object-fit: contain;
+            width: auto;
+        }
+
+        .work-order .table-sm td, .work-order .table-sm th {
+            padding: 0.2rem;
+        }
+
+        .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+        }
+
+        .row {
+            margin-right: -5px;
+            margin-left: -5px;
+        }
+
+        #totalCrew td{
+            color: #000 !important;
+        }
+    </style>
+
+</head>
+<body>
+
+    @foreach (var workOrder in Model)
+    {
+            DateTime? acStartDate = null;
+          DateTime? acEndDate = null;
+          float? acTime = null;
+
+            string? acParkingStart = workOrder.workOrderItems.Where(item => item.product.external_id == "SI008").Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Start").First().value).FirstOrDefault();
+            string? acParkingEnd = workOrder.workOrderItems.Where(item => item.product.external_id == "SI008").Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "End").First().value).FirstOrDefault();
+
+        if (!string.IsNullOrEmpty(acParkingStart) && !string.IsNullOrEmpty(acParkingEnd))
+        {
+            
+
+                    string[] validformats = new[] { "MM/dd/yyyy", "MM/dd/yyyy HH:mm:ss",
+                                        "MM/dd/yyyy HH:mm" };
+
+                    CultureInfo provider = new CultureInfo("en-US");
+
+                    acStartDate = DateTime.ParseExact(acParkingStart.Trim(), validformats, provider);
+                    acEndDate = DateTime.ParseExact(acParkingEnd.Trim(), validformats, provider);
+
+                         if (acStartDate.HasValue && acEndDate.HasValue)
+                    {
+
+                        TimeSpan diff = acEndDate.Value - acStartDate.Value;
+                        acTime = (float)Math.Round((float)(diff.TotalHours),2);
+
+                    }
+        }
+
+                    DateTime? gpuStartDate = null;
+                    DateTime? gpuEndDate = null;
+                    float? gpuTime = null;
+                    TimeSpan diffGPU = TimeSpan.Zero;
+                    string? gpuStart = null;
+                    string? gpuEnd = null;
+      
+                    try
+                    {
+                        gpuStart = workOrder.workOrderItems.Where(item => item.product.id == 32).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Start").First().value).FirstOrDefault();
+                        gpuEnd = workOrder.workOrderItems.Where(item => item.product.id == 32).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "End").First().value).FirstOrDefault();
+
+                           string[] validformats = new[] { "MM/dd/yyyy", "MM/dd/yyyy HH:mm:ss",
+                                        "MM/dd/yyyy HH:mm" };
+
+                        CultureInfo provider = new CultureInfo("en-US");
+
+                        gpuStartDate = DateTime.ParseExact(gpuStart.Trim(), validformats, provider);
+                        gpuEndDate = DateTime.ParseExact(gpuEnd.Trim(), validformats, provider);
+
+                         if (gpuStartDate.HasValue && gpuEndDate.HasValue)
+                    {
+
+                        TimeSpan diff = gpuEndDate.Value - gpuStartDate.Value;
+                        gpuTime = (float)Math.Round((float)(diff.TotalHours),2);
+
+                    }
+                    
+                    }
+                    catch (Exception e) { }
+        <section class="work-order py-2 px-2 px-md-5">
+
+
+            <div class="row">
+
+                <div class="col-auto logo">
+                    <picture>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gODUK/9sAQwAFAwQEBAMFBAQEBQUFBgcMCAcHBwcPCwsJDBEPEhIRDxERExYcFxMUGhURERghGBodHR8fHxMXIiQiHiQcHh8e/9sAQwEFBQUHBgcOCAgOHhQRFB4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e/8AAEQgATgDlAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+y6KSigBaKSigBaKSigBc0n415p+0j4jvvDPwuvLvTLyWzvpp4oIJo2KspLgnBH+yrD8a+UP+Fo/EPOP+Ez1n/wINergcoq4ym5waS8zy8ZmlPCz5JJtn33kUhr5X/Zj+IXibVviT/ZGv6/fahBdWkgiS4lLBZFIYEZ74DCvpTxPq9roPh+/1m9LLbWUDzSY6kKM4Hueg+tcuKwdTC1fZS1Z0YXGQxFJ1UrJGpmjI9RXxF4y+OHj7X76V7XVptIsyx8q3sztKjPALj5icdTkD2FYX/CZ/Ey0toNTk8T+KktpWIimlvJjE5GcgEnB6HjnpXqQ4eruKcpJXPPlntJNpRbSPvr8KM18wfAr4467eeJbPw14tnF7HeuIre72hJEkPChsYDAnjOMgkcmuB+IPxH8d2XjvXrS08WarDBBqE8cUaTkKihyAAOwAArCGSYiVZ0nZNK5rPOKMaSqJXufbtL2r54/ZI8V+JPEl/wCIE17W73UlgigMQuJSwQkvkjPTOB+VWP2p/H3ibwnqWhWfhrVZLF54ppJ9iI5cZULkMDjHzdK53l1T619Wur/gbrHw+r+3toe/UV4n+y1431/xfpGtx+IdSe+vLO4Qo7oqkI6kAfKAOqE9O9c38GPiB4x13436hoOq65LdabEbvZA0aADY+F5AB4HvUyy+pGVRO3ubjjj6bUGl8Wx9IelBr5z/AGn/AB/4w8J+MdLsvD+tS2FvNYiSREjRgW8xhnLAnoBXpPxw13V9A+EWo61pF69rfxJAUmVQSC0qA8EEcgkdO9T9Snam7/HsX9chea/l3PQ+KK8a+AHjLXdb+FOra/4g1J725tbifErqqkIkSsBgADqT2rwzw58Z/iKfEWmtfeJbiSya8iEyGGIBk3jcMhR2Pr3rellVapKcU17u5hUzOlCMJNP3j7YoFeIftUeMfEvhHStCm8O6pLYPczSrMURW3AKpH3gemT0rir34seKr/wAV/D4adrUkNrqltai/hWNCHl+0PFITkZGdvbHGOlZ0stq1aaqR2d/wLqZjSpzcHv8A5n1Hilr55/aW+JHibRPE2neEfDV6dPkuIUlmuVA3ku5VVBIOAMEkjnn25ofBn4geNLD4uTeAPFWr/wBrRmSWASvyySoCwKtgEggEYPqOlOOWVZUfaq217dbITzKlGr7Np9rn0rxScGvlX4k+PfiYfjPqPhLwxr00Ya6SG0t9kQAJQHG5l45J6mvoj4bR+I4vBWmx+LJC+tBG+1MSpy25scpx0x0rLE4KWHpxnJr3unU1oYyNapKEVsdJRRRXIdglFFFABRSZ9eKbJJHGhaRwqjqWOAPxoAfRWFqPivQbE7ZNRikfpthy5z6cZ/WtLT7s3dotwYJYA/IWUANjsSATj6UAfP8A+2tqnl6N4f0YN/r7iS5cZ7IoUf8AoZ/KvmDtXtX7Yep/a/iZbWCtlbGwQEejOSx/QrXnvg3SP7S8OeLbrbk2WmJIDjOCbiLnPbgN+Ga+8yq2HwMZPr+rPh8ybrYuSXQl+Deq/wBi/FLw5fltqC/jikOcAJIdhJ9gGJ/Cvr79oE/8WY8Skcf6KP8A0Na+F4JGhmSZDhkYOCOxByDX2v8AF/UE1T9nrVNSjYFbrTIphj/aKH+tcGdUrYqjU7tfmduU1f8AZ6sH2Z8S1778SwP+GVfBXH/Lyn/oMteBdxX2n8LfDOheKvgf4X0/X9PjvraOASrG5IAcFgDwRzgn867c5rKg6VRq6Tv+ByZZRdb2kE7XR8nfDH/kpHhj/sLWv/o1aPiZ/wAlF8R/9hS4/wDRjV9l6f8ACb4dadfW99Z+GbWG5tpVmhkEj5R1IIIy2MggGvjT4mjHxH8SY6f2pc/+jGpYDMI43FOcU1ZW1DG4KWEoJSd7s9p/Yl/5CXif/rjb/wA3qh+0zeWlx8d/D1rfTpDZ20dqLiRxlURpiXY+oCkE/Sr/AOxN/wAhLxP/ANcbf+b1ofET4Q+KPFnxuOuXVlbSeHprm3EpNyFZoEVA4wCCCQCOOec15tapTp5nOc3ZJfp0PQhCdTLoRgrtsyP2QL2KHx/4m06KUSQz2/mRsOjhJCAfxD5rO/Z6x/w0dqvbm+/9DrsPg/8ACrxX4M+Ltxq7WNvFoTi5hjK3AdhExJjBBOeyj19a5T/hUXxc0vxlqOveHBb2Us9xO0cyXiBijuTgg5xkYoqV6FSpVtNWlFWv3CFGtCFJuLvGTv6B+2bj/hP9F5/5hw/9GvXr37SBH/CiNWH+xbf+jo6439oL4X+M/Gmu6PfaPbW8wttOSGdpbhUPmBiTwevXrWkfBfxK1b4Fa74a8SzJe69c3qNaeZcIQIFMJA3DAGCrnB9feuX2tL2VD3l7r1+86OSp7SsuV2ktDlPhBfDTv2W/GN1nBElzGD7vEiD9WFeH3QsB4G0/y7mI6gNRuDJECdyxmOEKT7ZVsfjX0Ronww8a2XwA1nwcbS1GrX2oLKiC5Xb5YMRJLdM/IRiuSuP2ffE3/CBWiw6bajxF9vczk3Y2/Zig2gc4yGBPAzzXoYbGYeE5ylLeX4W/I4q+FryhCKi9Ea37V98NT8A+CNSzn7UpmJ9d0SH+teOeB0urf4leHLG73BrTVYIwh/g/fAkD2ySfxr3n4k/DDxt4h+F3gvQ7a0tm1DSY2ju1a4UBRtCrg9DwB0qpr3wb8Uv8WNI8R6Za2xsI5LKa6JnVSjxhBJgdT9zPHXNThMdQpYf2TkvtfnoPEYOtUrqoovoc3+1GR/wvTSP+vS0z/wB/nr0XR/8AhUn/AAvNvsf9o/8ACX/bJc58zyvN2Nv6/LjGag/aK+FniLxVr+n+KPCywzXltEIZYHkCMdrFkZSeDgkggkduvNUvg38LfGMXxNm8e+NY7e1ud8sqwJIrM8rggnCkhVAJxyT0rkdSjPCxfPZqLVlu3/kdMaNWOJkuS6bvfoeZ/Eu21m7/AGlL+28PXAt9Vkv0W0lL7Qj+WuDnBx+VfWfw/tdcs/BumWviS5F1q0cOLqUPuDPk85wM8Y7V4D8SPhN8SL74r6j4s8NRW8Qa4WW0n+1IrqQgGcHocg17r8LLXxLZeBNOtfF9wbjW08z7TIXDk5kcpyODhCo/CscyrQqUKXLJOySff/hjfLqU6defMnq9Ox1NFFFeKe0Z2o6vY2GRO7lh/DHGzn8gDXOaj43ePK2Oh6hOezSRlB/ImuyIGelHPpQB5TqPi3xfdZENpJaKf+eVsScfUg1z16uu3rbrxNSnJ/56K5/Qivdse1GPai/kFvM8C8UanH8PtDTUrjTpdQ1+5UnT7FYy6w9vNlwOAD0HUkY9SPn/AFHXfiBf3099dah4haady77XlQZPoBgAegAwK+/GRT1VT+FVdVuIbDTLq9mCiO3heVzjgAAk/oK9TA4+GGVvZqTfVnl43BTrvm52kuh+dN/cXd1dSTX0809yTiR5nLOSABgk88AAc+lTacurG3nXT1vTDKNkwgDlXA5wwHB69D61DqFy97f3F5KcvPK8jE+pJJ/U19c/siaatt8KnumQZvL+WTJHUAKg/wDQTX12PxiwmHU+VPbQ+XweFeJrOF/mfH9an9oeIZdJMP23VZNOVQjJ5rmEAYwCM4AHHH0qx8QdN/sfxzrmmBdq21/MiDphd52/oRXpvwy1RZv2dfH+jOcvask65/uyFRx+KH860xOIUaUKqindr5XM6FFupKne1k/nY8X4z7VrQ6t4msbGLydS1e2swNsW2eRI+/AwcevSskY5zXvfxMC/8MreCzgA/aIxnv8AdlqsXXjCVOLinzO2vQWGpOanJO3KrnnPw38ReIJviH4chm1zVJI31S2V0a7chgZVBBBPII7VlfE3/ko3iP8A7Clz/wCjGpfhh/yUjwz/ANha1/8ARq0fEz/ko3iP/sKXH/oxqmnCMMZ7qt7vT1Cc5Sw+rvqe1fsS/wDIS8T/APXG3/m9exeK/FepweIBoujQRtMCFLOASzEAgDJAAAI5NeO/sS/8hLxP/wBcbf8Am9eh6rIYvig8gQyMlwGCjqSEBwPrXx+c/wC+zPrMo/3SJ1XgDxTca3NNZX0SJcxLvDICAwzg5HYgkfXNQePPFep6Hq8VrZx27I8Ic+YpJySR2I9Kp/Dm80m48QTJZaQ9lOIWLO1wXyMjIwRxz/Ks34ulh4kt9vX7MuP++mry+p6nQ3/CXi2/1DXG0jVLOKGcA42AjBHUEEnsD+VXvH/iSTQLaBLaNXuJydpfooGMkjv1Fcn4GDyePpn1NmjvwZPkVQVL4IIJB4wM9Pzq18Zv+PzTf+ub/wAxSe4dCx4d8Y6v/b8Ol63BCDOVAZBgoWAKk4JBBBH51u+P9cvNC023uLNYWeSbYwlBIxgnsRzxXC3P/JQbD/etP/RcddP8Yf8AkB2f/Xx/7IaLahcztR8caxbx6cY47Um6txK+UPBLsOOemAK6/wAXalcaT4dm1G2CNNHswHBI5YDoCOxrynW/9Vov/Xkv/ox69K+I/wDyJN3/ANsv/Q1pgtjn5vHOof8ACNQX8SW32o3LQzKVJXAGQQM56Ed+xrr72/uIfCz6mgTzxaCYAg7c7QcY9M14h5si2xgORG7CQA+oBGR+Z/KvZdV/5J/L/wBg4f8AoApWEjjYvH/iHyDdGzs2gRwjMEYDJBIGc9SAfyr0Tw7qS6vottqCJ5YmUkqTnBBII/MGvHbb/kTr0/8AT9D/AOgPXqHw1/5Eqw/7af8Ao16btYaOjoooqRiUUUUAFFFFACVxfxtnu7f4V+IfsVvNcXE1m0CRwoXcl8IcAAk4DE/hXa00qD1qqcuSala9tSKkOeDjfc/O7/hFvE//AELur/8AgFJ/hX2x8CtKl0f4UeHrKeF4ZvsolkR1IZS5LkEHkEbuh9K7gIPb8qXFenmGazxsFBxSS7HnYHLI4SbmpXbPij9qTS/7N+MOoyhcJfQxXK8eq7SfzQ0v7OlrFrmseIPB883lJrmkSRK3XEiEMpx3xyfwrtP21tN8vW/D2rqvE1vLbucf3GDD/wBDNeWfBDVDo/xX8OXu7av2wQue2JAYzn8Hr6OhJ18rut0vxR8/Wj7HMLPZv8yl4w8B+K/CmoSWmsaNdqEJC3EcZeGQDurgYIP4EdwKueHtH+IPjS0s/DVhFqt5p9u+6GOUsLeDOcsSeAOT+ZxX3mERk+ZQfqM05Y0UcKB9BXkPiGpKCTgnJdT1f7CgpNqdk+h8MeDfBvijRvirotre6Hfg2eswLLKtu5jwsq5YPjBGBnPTFVfiN4c8Rz/EDxDNDoOqSRvqVwyMtm5DAyEgggYIPrX3jtHpS7V9KiOf1FU9o4q9rFPI4cnIpdT5u/Y20rVNN1DxIdR028sxJFAEM8DRhsF84yBnGR+dei+LdM1bT/Gi63aWMl3E0iSAIpPIABBwCR06+9embQAcVi6drZu49Zf7Ps/sy5eDG7PmbY0fPTjO7GOeleXisRLFVXVas2enhaEcNSVPexynw40nVbHxPcT39jLArwE7yuFySpxn168e1N+JulanfeILeazsLi4jWAKWSMkA7icZHsRWt8O/Gq+MLW5lSwkspLZYvNikb5ld03FTwOBwQRwQQe+Ks6J4lu7vwrqOtXdhFC9nLdxiGOcuH8h3QncVGMlDjjoR9KxdOUXZ9DVVItXRi6Ppmox/Eqa+ksp0tTLKRKYyEIKkA596ufFPRL7U4LW6sYWnaDcrooy2Dg5A74x+tWrfxbK/w6uPFslgFaGzluvs+5xkICQMuikZx12454yOabYeMZLn4c3vi5tPCm2guJlgEhxKIt2CGKggNt4yARnkUOnLewKpA5nw/pOr6t4sttSudPltYYDEZGdSB8igADIySdo+ma634kaRd6voSJZpvmglEgTOCwwQQPfmk8E+LrfxJpd9qAtns47K4MEglb5lIiR3DDAwVLlT1+6TnmmfD7xlB4z0S41KygETxTPF5TSg8YDISQOMqVJGMgkjkg0nTktewKrGWxw1po2uaveWFo2mT2620YheSSMqAA5JJJA556DrivRPH9rcXXhO6trWB5pWKbUQEk4cE8D2FU7TxTdn4fah4pu9PhjktLa5nFvHOXDCENxuKjBJQ9uMjrU/ijxJNpVrpYtbSCa61OYQwi4n8mJD5bOS7YJHCkAAEkkCjlbdkP2kUrnCar4a1RtD0mWLTrlpxHJHNGIzuXDkgkY7gmvRNRt7h/BMlqkLtObEIIwCWLbAMY9c1mT+Mynw5fxdDpzSske4Wqyj52D7CFfGCCc4OMEYPGaseGvGFjrPha78RMjW1layThjJkEJETkkEDB4OQehGKHTla4vaRv8Aiedx6N4jGnSaeujXQjllSRiYiDkAgDPTHzGvVPBVjPpvhizsrpQsyKxdQehZy2PwzWN4X8bQa74AuPFUVqI3t45mltvNDFXjBJUsBjkAHOOhFdLod8upaNZ6goCi5gWXaGzjcASM+2cUpxknqOM4ytYvUUUVJoJRS4oxQAlFLijFACUUuKMUAJRS4owKAPEf2w9MF38M7a/C5exv0cnHIVwUP6lfyr5HsriS0vILuI4kgkWRSOxBBH6iv0Q8T6DpPiXRp9G1u0F3Yz48yIuyZwQRypBGCOxriP8AhRXwqx/yKw/8D7n/AOOV9Blmb0sNh3Smm99jwcwyypXrqpBpbbne6FfRano9lqMBzFdW6TIfUMoI/Q1fqlo2m2ekaZa6Xp8RitLWJYYIy7PsRRgDLEk4A7mr2K8CVuZ2PcjflV9xKKXFGKRQlV47W2jEwjgiQTsWlAUDeSACT6kgAZPYCrOKMUAUrOws7RnNrawwFwoYxoFyFGFBx1wBgeg4p0dlaJbyWyWsQglLl4wgCsXJLkjockkn1JNW8UYouxcqM+30nS7bTDplvp1rFYlSptkiAjIOcjaBjByc8c5p66dYLZS2S2UAtpd/mQiMbX3kl8jGDkkk565OauYoxTuw5UU00+xWO4hWzgWO4JM6iMASEjBLDHJIABz2Ap1tZWltK8tvbRRPIFDsiAFgBgAkdcDgelW8UYouwsuxT+wWf2F7D7LD9lkVkeHYNjBs7gR0IOTkd8mm6npenalZGy1Cxtru1OMwzRh0OOnBBHFXRiild3uFkU2sLJrIWLWkJtQoUQmMbABjAx0wMDA9qT+zdPFtNa/YrfyJ2ZpY/LG1yxyxIxg5PXPWr2KMU7sLIprYWSpcRrawhLkkzjYMSEqFJYdzgAc9gB2pdMsbPTbKOy0+0htLaPPlwwoFRckk4A4GSSfqat4opXYWQUUUUDP/2Q==" alt="logo">
+                    </picture>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col">
+                                    Ramp Billing Workorder
+                                </div>
+                                <div class="col-auto">
+                                    <small><strong>Reference ID: </strong>@workOrder.reference_id</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <div class="card">
+                        <div class="card-header">DEMOGRAPHICS</div>
+                        <div class="card-body">
+
+                            <table class="table table-bordered table-sm mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Station</th>
+                                        <th>Date</th>
+                                        <th>Carrier</th>
+                                        <th>Gate</th>
+                                        <th>Customer</th>
+                                        <th>A/C Type</th>
+                                        <th>Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@(workOrder.station != null ? workOrder.station.station_name : "")</td>
+                                        <td>@workOrder.date</td>
+                                        <td>@(workOrder.carrier != null ? workOrder.carrier.airline_name : "")</td>
+                                        <td>@(workOrder.gate != null ? workOrder.gate.name : "")</td>
+                                        <td>@(workOrder.custom_customer == true ? workOrder.custom_customer_name : workOrder.customer != null ? workOrder.customer.customer_name : "")</td>
+                                        <td>@(workOrder.acType != null ? workOrder.acType.description : "")</td>
+                                        <td>@(workOrder.operationType != null ? workOrder.operationType.operation_name : "")</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <div class="card">
+                        <div class="card-header">LOAD / UNLOAD</div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <table class="table table-bordered table-sm mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4">Inbound</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Flight #</th>
+                                                <td>@workOrder.inbound_flight_number</td>
+                                                <th>Origin</th>
+                                                <td>@(workOrder.inboundOriginAirport != null ? workOrder.inboundOriginAirport.airport_iata_code : string.Empty)</td>
+                                            </tr>
+                                            <tr>
+                                                <th>ATA</th>
+                                                <td>@(workOrder.inbound_scheduled_arrival != null ? workOrder.inbound_scheduled_arrival.Value.ToString() : string.Empty)</td> <!--TOASK  wich workorder field is it?-->
+                                                <th>Block In</th>
+                                                <td>@(workOrder.inbound_block_in != null ? workOrder.inbound_block_in.Value.ToString() : string.Empty)</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tail #</th>
+                                                <td>@workOrder.inbound_tail_number</td>
+                                                <td colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">Total # ULDs Unloaded</th>
+                                                <td colspan="2">@workOrder.inbound_cargo_total_ulds_unloaded</td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">Total # Bulk pieces Unloaded</th>
+                                                <td colspan="2">@workOrder.inbound_cargo_bulk_unloaded</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-6">
+                                    <table class="table table-bordered table-sm mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4">Outbound</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Flight #</th>
+                                                <td>@workOrder.outbound_flight_number</td>
+                                                <th>Destination</th>
+                                                <td>@(workOrder.outboundDestinationAirport != null ? workOrder.outboundDestinationAirport.airport_iata_code : string.Empty)</td>
+                                            </tr>
+                                            <tr>
+                                                <th>ATA</th>
+                                                <td>@(workOrder.outbound_scheduled_departure != null ? workOrder.outbound_scheduled_departure.Value.ToString() : string.Empty)</td><!--TOASK  wich workorder field is it?-->
+                                                <th>Block Out</th>
+                                                <td>@(workOrder.outbound_block_out != null ? workOrder.outbound_block_out.Value.ToString() : string.Empty)</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tail #</th>
+                                                <td>@workOrder.outbound_tail_number</td>
+                                                <td colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">Total # ULDs Loaded</th>
+                                                <td colspan="2">@workOrder.outbound_cargo_total_ulds_loaded</td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">Total # Bulk pieces Loaded</th>
+                                                <td colspan="2">@workOrder.outbound_cargo_bulk_loaded</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <div class="card">
+                        <div class="card-header">SERVICES</div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <table class="table table-bordered table-sm mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Service Name</th>
+                                                <th>Qty</th>
+                                            </tr>
+                                        </thead>
+                                        <!--TODO LINQ selecting the service that matches field needs-->
+                                        <tbody>
+                                          <tr>
+                                                <th>Regulated Garbage</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI057").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td> 
+                                            </tr>
+                                            <tr>
+                                                <th>Pushback</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI051").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>A/C Cleaning</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI001").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Loadmaster</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.name == "Loadmaster").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Marshalling </th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI107").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>GPU </th>
+                                                <td class="text-center">@gpuTime</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Transfer/Staging</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI070").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td> 
+                                            </tr>
+                                            <tr>
+                                                <th>Crew Transport</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI022").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Crew Stairs</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI023").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-8">
+                                    <table class="table table-bordered table-sm mb-0">
+                                        
+                                        <thead>
+                                            <tr>
+                                                <th>Service Name</th>
+                                                <th>Qty</th>
+                                                <th>Asset ID</th>
+                                                <th colspan="4">Remarks</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                              <!--TODO LINQ selecting the service that matches field needs-->
+                                            <tr>
+                                                <th>Water</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI075").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                                <td class="text-center">None</td>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Lavatory</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI042").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                                <td class="text-center">None</td>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tow</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI126").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                                <td class="text-center">None</td>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tow Extended</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI138").Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault()</td>
+                                                <td class="text-center">None</td>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>A/C Unit</th> <!--TOASK MULTIPLE ATTRIBUTES RESULT FOR THIS ITEM-->
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI002").Select(item => item.workOrderItemAttributes.Where(woia => woia.name is null || woia.name == "").First().value).FirstOrDefault()</td>
+                                                <td class="text-center">None</td>
+                                                <td colspan="4">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI002").Select(item => item.workOrderItemAttributes.Where(woia =>  woia.name == "remark").First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Loader</th><!--CONTINUE-->
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 147).Select(item => item.workOrderItemAttributes.Where(woia => woia.name is null || woia.name == "").First().value).FirstOrDefault()</td>
+                                                <td class="text-center">None</td>
+                                                <td colspan="4">@workOrder.workOrderItems.Where(item => item.product.id == 147).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "remark").First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Forklift</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 145).Select(item => item.workOrderItemAttributes.Where(woia => woia.name is null || woia.name == "").First().value).FirstOrDefault()</td>
+                                                <td class="text-center">None</td>
+                                                <td colspan="4">@workOrder.workOrderItems.Where(item => item.product.id == 145).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "remark").First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Airstart</th>
+                                                <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI003").Select(item => item.workOrderItemAttributes.Where(woia => woia.name is null || woia.name == "").First().value).FirstOrDefault()</td>
+                                                <td class="text-center">None</td>
+                                                <td colspan="4">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI003").Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "remark").First().value).FirstOrDefault()</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Parking</th>
+                                                <th>Start:</th>
+                                                <td>@workOrder.workOrderItems.Where(item => item.product.external_id == "SI008").Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Start").First().value).FirstOrDefault()</td>
+                                                <th>End:</th>
+                                                <td>@workOrder.workOrderItems.Where(item => item.product.external_id == "SI008").Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "End").First().value).FirstOrDefault()</td>
+                                                <th>Hours:</th>
+                                                <td>@acTime</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                @{
+                 
+
+
+        if (!string.IsNullOrEmpty(gpuStart) && !string.IsNullOrEmpty(gpuEnd))
+        {
+            
+
+                    string[] validformats = new[] { "MM/dd/yyyy", "MM/dd/yyyy HH:mm:ss",
+                                        "MM/dd/yyyy HH:mm" };
+
+                    CultureInfo provider = new CultureInfo("en-US");
+
+                    gpuStartDate = DateTime.ParseExact(gpuStart.Trim(), validformats, provider);
+                    gpuEndDate = DateTime.ParseExact(gpuEnd.Trim(), validformats, provider);
+
+                         if (gpuStartDate.HasValue && gpuEndDate.HasValue)
+                    {
+
+                        diffGPU = gpuEndDate.Value - gpuStartDate.Value;
+                      
+
+                    }
+        }
+    
+                <div class="col-8 mb-2">
+                    <div class="card">
+                        <div class="card-header">EQUIPMENT</div>
+                        <div class="card-body">
+
+
+                            <table class="table table-bordered table-sm mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Equipment Name</th>
+                                        <th>Asset ID</th>
+                                        <th>Hours</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th>SAFETY MESSAGE</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="border: 2px solid #8EAADB;">
+                                    <tr>
+                                        <th>GPU</th>
+                                        <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 148).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "GPU").First().value).FirstOrDefault()</td>
+                                        <td class="text-center">@diffGPU.Hours:@diffGPU.Minutes</td>
+                                        <td class="text-center">@gpuStart</td>
+                                        <td class="text-center">@gpuEnd</td>
+                                        <td rowspan="11" class="text-justify p-3" style="width: 30%;">
+                                            <!-- Aqui va el SAFETY MESSAGE -->
+                                            @workOrder.safety_message
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Main Loader</th>
+                                        <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 149).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Load").First().value).FirstOrDefault()</td>
+                                        <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 149).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Connected Time").First().value).FirstOrDefault()</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Lower Loader</th>
+                                          <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 150).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Load").First().value).FirstOrDefault()</td>
+                                        <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 150).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Connected Time").First().value).FirstOrDefault()</td>
+                                </tr>
+                                    <tr>
+                                        <th>Additional Loader</th>
+                                        <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 151).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Load").First().value).FirstOrDefault()</td>
+                                        <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.id == 151).Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Connected Time").First().value).FirstOrDefault()</td>
+                                  </tr>
+                                    <tr>
+                                        <th rowspan="5">Transport</th>
+                                        <td class="text-center">None</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">None</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">None</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">None</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">None</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2">Belt Loader</th>
+                                        <td class="text-center">@workOrder.workOrderItems.Where(item => item.product.external_id == "SI087").Select(item => item.workOrderItemAttributes.Where(woia => woia.name == "Load").First().value).FirstOrDefault()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">None</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+           
+                <div class="col-4 mb-2">
+                    <div class="card">
+                        <div class="card-header">CREW </div>
+                        <div class="card-body">
+
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Position</th>
+                                        <th>Qty</th>
+                                        <th>Hours</th>
+                                        <th>OT Hours</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        @{
+                                            long supervisorHeadcount = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 160).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out supervisorHeadcount);
+
+                                            long leadHeadcount = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 161).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out leadHeadcount);
+
+                                            long agentHeadcount = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 162).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out agentHeadcount);
+
+                                            long totalHeadcounts = supervisorHeadcount + leadHeadcount + agentHeadcount;
+
+
+                                               long supervisorHours = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 86).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out supervisorHours);
+
+                                            long leadHours = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 79).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out leadHours);
+
+                                            long agentHours = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 163).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out agentHours);
+
+                                            long totalHours = supervisorHours + leadHours + agentHours;
+
+
+                                              long supervisorOvertime = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 87).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out supervisorOvertime);
+
+                                            long leadOvertime = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 80).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out leadOvertime);
+
+                                            long agentOvertime = 0;
+                                            Int64.TryParse(workOrder.workOrderItems.Where(item => item.product.id == 164).Select(item => item.workOrderItemAttributes.First().value).FirstOrDefault(),out agentOvertime);
+
+                                            long totalOvertime = supervisorOvertime + leadOvertime + agentOvertime;
+
+                               
+
+
+                                    <tr>
+                                        <th>Manager / Supervisor</th>
+                                        <td class="text-center">@supervisorHeadcount</td>
+                                        <td class="text-center">@supervisorHours</td>
+                                        <td class="text-center">@supervisorOvertime</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Agents</th>
+                                        <td class="text-center">@agentHeadcount</td>
+                                        <td class="text-center">@agentHours</td>
+                                        <td class="text-center">@agentOvertime</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>Others</th>
+                                        <td class="text-center">@leadHeadcount</td>
+                                        <td class="text-center">@leadHours</td>
+                                        <td class="text-center">@leadOvertime</td>
+                                    </tr>
+                                    <tr id="totalCrew">
+                                        <th class="table-primary">TOTAL</th>
+                                        <td class="table-primary text-center">@totalHeadcounts</td>
+                                        <td class="table-primary text-center">@totalHours</td>
+                                        <td class="table-primary text-center">@totalOvertime</td>
+                                    </tr>
+ }
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered table-sm mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>REMARKS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-justify p-3" style="height: 154px">
+                                            @workOrder.remark
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+                <div class="col-6 mb-2 pr-lg-1">
+                    <div class="card">
+                        <div class="card-header">CF Representative Signature </div>
+                        <div class="card-body text-center">
+                            <img class="img-fluid" style="max-height: 100px;" src="@(workOrder.representative_signature != null ? workOrder.representative_signature : NullImage)">
+                            <table class="table table-bordered table-sm mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Print Name </th>
+                                        <th>Position</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="w-40">@workOrder.representative_name</td>
+                                        <td>@workOrder.representative_title</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-2 pl-lg-1">
+                    <div class="card">
+                        <div class="card-header">Customer Representative Signature</div>
+                        <div class="card-body text-center">
+                            <img class="img-fluid" style="max-height: 100px;" src="@(workOrder.customer_signature != null ? workOrder.customer_signature : NullImage)">
+                            <table class="table table-bordered table-sm mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Print Name </th>
+                                        <th>Position</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="w-40">@workOrder.customer_name</td>
+                                        <td>@workOrder.customer_title</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12">
+                    <!--<p class="text-center mb-0">The Datetimes in this report are using the timezone: <b>America/New_York</b></p>-->
+                    <p class="text-right font-weight-bold mb-0">Alliance Ground International @DateTime.Now.Year</p>
+                </div>
+
+            </div>
+
+        </section>
+       <div style='page-break-before: always;'></div>
+    }
+
+
+
+</body>
+</html>

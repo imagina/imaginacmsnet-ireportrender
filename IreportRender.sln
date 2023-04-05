@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IreportRender", "IreportRender.csproj", "{31899308-4ED5-42FC-B38B-887A7275050A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31899308-4ED5-42FC-B38B-887A7275050A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31899308-4ED5-42FC-B38B-887A7275050A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31899308-4ED5-42FC-B38B-887A7275050A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31899308-4ED5-42FC-B38B-887A7275050A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F399F22-3B2B-4A51-AAAF-A7C562FB541C}
+	EndGlobalSection
+EndGlobal

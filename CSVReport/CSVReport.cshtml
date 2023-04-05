@@ -1,0 +1,80 @@
+﻿@using Idata.Entities.Idhl
+@model string
+@{
+	List<string>? csvList = !string.IsNullOrEmpty(Model) ? Model.Split("\r\n").ToList() : null;
+	string[]? headers = csvList?.Skip(1).First().Split('|').ToArray();
+	string? entityName = csvList?.First().ToUpper();
+	
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<style>
+		.demo {
+			width: 100%;
+			height: 100%;
+			border: 0.5px solid #0C67DF;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+
+			.demo th {
+				border: 0.5px solid #0C67DF;
+				padding: 5px;
+				background: #92A0C8;
+			}
+
+			.demo td {
+				border: 0.5px solid #0C67DF;
+				padding: 5px;
+			}
+	</style>
+</head>
+<body>
+	<table class="demo">
+	@if(entityName.Contains("report"))
+		{
+		<caption>@entityName</caption>
+		}
+		else
+		{
+		<caption>EXPORT OF @entityName</caption>
+		}
+		<thead>
+			<tr>
+				@foreach (var header in headers)
+				{
+					<th>@header</th>
+				}
+				
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var body in csvList.Skip(2))
+			{
+				<tr>
+					@foreach (var csvLine in body.Split('|').ToArray())
+					{
+						<td>@csvLine</td>
+					}
+				</tr>
+			}
+		
+		</tbody>
+	</table>
+
+	@if(headers.Count() > 7)
+	{
+		<script>
+			var demo = document.querySelector('.demo')
+			var height_weight_ratio = window.innerHeight / demo.clientWidth
+
+			demo.style.zoom = height_weight_ratio * 2.1;
+
+			window.JSREPORT_READY_TO_START = true;
+		</script>
+	}
+	
+</body>
+</html>
